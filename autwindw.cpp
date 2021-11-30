@@ -16,6 +16,10 @@ AutWindw::~AutWindw()
 
 void AutWindw::on_Btn_Enter_clicked()
 {
-    ui->login_line->text();
-    ui->login_line->text();
+   if(!init_user(ui->login_line->text(), ui->login_line->text()))  // Вызывается метод из класса basedata, запрос на авторизацию
+   {
+       return;
+   }
+
+   //тут будет открывать MainWidnow
 }

@@ -17,7 +17,8 @@ public:
 
 private slots:
 
-    void on_Btn_Enter_clicked();
+    void on_Btn_Enter_clicked(); // Вызывается метод из класса basedata, запрос на авторизацию
+
 
 private:
     Ui::AutWindw *ui;
