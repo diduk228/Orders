@@ -18,6 +18,9 @@ public:
 
 private:
     Ui::DeleteProducts *ui;
+
+public:
+    void init_table();
 };
 
 #endif // DELETEPRODUCTS_H

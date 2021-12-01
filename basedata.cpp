@@ -29,6 +29,8 @@ bool BaseData::init_user(QString login, QString password)
     if(!query->next())
     {
         delete  query;
+        db.close();
+        QSqlDatabase::removeDatabase("mydb");
         QMessageBox::warning(this, "Ошибка", "Не правильный пароль или логин" );
         return 0;
     }
@@ -40,10 +42,14 @@ bool BaseData::init_user(QString login, QString password)
         int phone = query->value(3).toString().toInt();
         QString name_person = query->value(4).toString();
         User::set(mod, name, adress, phone, name_person, login, password);
+        db.close();
+        QSqlDatabase::removeDatabase("mydb");
         delete  query;
         return 1;
     }
 
+    db.close();
+    QSqlDatabase::removeDatabase("mydb");
     delete  query;
     return 1;
 }
@@ -97,6 +103,8 @@ bool BaseData::add_product(QVector<QString> data)
     if(!query->exec(str))
     {
         delete query;
+        db.close();
+        QSqlDatabase::removeDatabase("mydb");
         QMessageBox::warning(this, "Ошибка", "Введены не корректные данные." );
         return 0;
     }
@@ -104,4 +112,63 @@ bool BaseData::add_product(QVector<QString> data)
     db.close();
     QSqlDatabase::removeDatabase("mydb");
     return 1;
+}
+
+int BaseData::get_count_products()
+{
+    //Подключение к MySql
+    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL", "mydb");
+    db.setHostName("127.0.0.1");
+    db.setDatabaseName("basic_sql");
+    db.setUserName("root");
+    db.setPassword("admin");
+    if(!db.open())
+    {
+        QMessageBox::warning(this, "Ошибка", "Нет доступа к базе данных" );
+        return 0;
+    }
+    //Подключение к MySql
+
+    QSqlQuery *query = new QSqlQuery(db);
+    query->exec("SELECT count(*) FROM goods");
+    while (query->next()) {
+        int count = query->value(0).toString().toInt();
+        delete query;
+        db.close();
+        QSqlDatabase::removeDatabase("mydb");
+        return count;
+    }
+    delete query;
+    db.close();
+    QSqlDatabase::removeDatabase("mydb");
+    return 0;
+}
+
+QVector<QVector<QString>> BaseData::get_all()
+{
+    QVector<QVector<QString>> vec;
+    //Подключение к MySql
+    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL", "mydb");
+    db.setHostName("127.0.0.1");
+    db.setDatabaseName("basic_sql");
+    db.setUserName("root");
+    db.setPassword("admin");
+    if(!db.open())
+    {
+        QMessageBox::warning(this, "Ошибка", "Нет доступа к базе данных" );
+    }
+    //Подключение к MySql
+
+
+    QSqlQuery *query = new QSqlQuery(db);
+    query->exec("SELECT id, name_goods, cost, count_goods FROM goods");
+    while (query->next()) {
+        QVector<QString> data;
+        data.push_back(query->value(0).toString());
+        data.push_back(query->value(1).toString());
+        data.push_back(query->value(2).toString());
+        data.push_back(query->value(3).toString());
+        vec.push_back(data);
+    }
+    return vec;
 }
