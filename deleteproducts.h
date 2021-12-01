@@ -3,6 +3,8 @@
 #include "basedata.h"
 #include "mainwindow.h"
 #include <QMainWindow>
+#include <QHBoxLayout>
+#include <QCheckBox>
 
 namespace Ui {
 class DeleteProducts;
@@ -21,6 +23,9 @@ private:
 
 public:
     void init_table();
+private slots:
+    void on_pushButton_clicked();
+    void addCheckBoxAt(int row_number, int column_number,int state);
 };
 
 #endif // DELETEPRODUCTS_H
