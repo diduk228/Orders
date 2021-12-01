@@ -24,22 +24,27 @@ bool BaseData::init_user(QString login, QString password)
 
     //Запрос
     QSqlQuery *query = new QSqlQuery(db);
-    query->exec(QString("SELECT mod, name, adress, phone, name_person FROM DB_users WHERE name = %1 AND password = %2").arg(login).arg(password)); // запрашиваем все поля для заданного пароля и логин
+    query->exec(QString("SELECT mod_person, name_person, adress, phone, name_company FROM users WHERE login = '%1' AND password = '%2'").arg(login).arg(password)); // запрашиваем все поля для заданного пароля и логин
 
-    if(!query->at())
+    if(!query->next())
     {
+        QString mod2 = query->value(0).toString();
         delete  query;
         QMessageBox::warning(this, "Ошибка", "Не правильный пароль или логин" );
         return 0;
     }
-    while (query->next()) {
-      QString mod = query->value(0).toString();
-      QString name = query->value(1).toString();
-      QString adress = query->value(2).toString();
-      int phone = query->value(3).toInt();
-      QString name_person = query->value(4).toString();
-      User::set(mod, name, adress, phone, name_person, login, password);
+    else
+    {
+        QString mod = query->value(0).toString();
+        QString name = query->value(1).toString();
+        QString adress = query->value(2).toString();
+        int phone = query->value(3).toString().toInt();
+        QString name_person = query->value(4).toString();
+        User::set(mod, name, adress, phone, name_person, login, password);
+        delete  query;
+        return 1;
     }
+
     delete  query;
     return 1;
 }
