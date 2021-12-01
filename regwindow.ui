@@ -105,7 +105,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_18"/>
+       <widget class="QLineEdit" name="login"/>
       </item>
       <item>
        <spacer name="horizontalSpacer_86">
@@ -175,7 +175,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_16"/>
+       <widget class="QLineEdit" name="password"/>
       </item>
       <item>
        <spacer name="horizontalSpacer_80">
@@ -245,7 +245,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_14"/>
+       <widget class="QLineEdit" name="phone"/>
       </item>
       <item>
        <spacer name="horizontalSpacer_68">
@@ -315,7 +315,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_17"/>
+       <widget class="QLineEdit" name="person_name"/>
       </item>
       <item>
        <spacer name="horizontalSpacer_84">
@@ -385,7 +385,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_15"/>
+       <widget class="QLineEdit" name="name"/>
       </item>
       <item>
        <spacer name="horizontalSpacer_70">
@@ -455,7 +455,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QLineEdit" name="lineEdit_13"/>
+       <widget class="QLineEdit" name="adress"/>
       </item>
       <item>
        <spacer name="horizontalSpacer_66">
@@ -488,7 +488,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_6">
+       <widget class="QPushButton" name="regBtn">
         <property name="text">
          <string>Зарегистрироватся</string>
         </property>
@@ -525,7 +525,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_5">
+       <widget class="QPushButton" name="ComeBack">
         <property name="text">
          <string>Назад</string>
         </property>
