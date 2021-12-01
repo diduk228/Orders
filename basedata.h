@@ -14,6 +14,7 @@ public:
     ~BaseData();
     bool init_user(QString name, QString password); // запрос к базе данных
     bool reg_user(QVector<QString> data);           // добавления пользователя в базу данных
+    bool add_product(QVector<QString> data);        // Добавляет в базу данных данные о продукте
 };
 
 
