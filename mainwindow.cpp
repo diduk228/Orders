@@ -20,3 +20,10 @@ void MainWindow::on_process_products_2_triggered()
     this->close();
     pro->show();
 }
+
+void MainWindow::on_delete_products_triggered()
+{
+    DeleteProducts *del = new DeleteProducts(this);
+    this->close();
+    del->show();
+}

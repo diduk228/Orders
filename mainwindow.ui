@@ -193,7 +193,7 @@
      <string>Заказы</string>
     </property>
     <addaction name="action_2"/>
-    <addaction name="action_3"/>
+    <addaction name="delete_products"/>
     <addaction name="process_products_2"/>
    </widget>
    <widget class="QMenu" name="menu">
@@ -210,7 +210,7 @@
     <string>Добавить товары</string>
    </property>
   </action>
-  <action name="action_3">
+  <action name="delete_products">
    <property name="text">
     <string>Удалить товары</string>
    </property>
