@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QPushButton" name="pushButton_3">
+   <widget class="QPushButton" name="go_to_basket">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -40,7 +40,7 @@
      <string>Режим: Заказчик</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label">
+   <widget class="QLabel" name="picture">
     <property name="enabled">
      <bool>true</bool>
     </property>
@@ -65,7 +65,7 @@
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="buy_product">
     <property name="geometry">
      <rect>
       <x>180</x>
@@ -81,8 +81,8 @@
    <widget class="QPushButton" name="pushButton_5">
     <property name="geometry">
      <rect>
-      <x>190</x>
-      <y>90</y>
+      <x>170</x>
+      <y>80</y>
       <width>93</width>
       <height>28</height>
      </rect>
@@ -91,7 +91,7 @@
      <string>Открыть</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="add_to_basket">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -107,8 +107,8 @@
    <widget class="QTableWidget" name="tableWidget">
     <property name="geometry">
      <rect>
-      <x>30</x>
-      <y>60</y>
+      <x>10</x>
+      <y>50</y>
       <width>311</width>
       <height>401</height>
      </rect>
@@ -192,7 +192,7 @@
     <property name="title">
      <string>Заказы</string>
     </property>
-    <addaction name="action_2"/>
+    <addaction name="add_goods"/>
     <addaction name="delete_products"/>
     <addaction name="process_products_2"/>
    </widget>
@@ -205,7 +205,7 @@
    <addaction name="menu_2"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="action_2">
+  <action name="add_goods">
    <property name="text">
     <string>Добавить товары</string>
    </property>
