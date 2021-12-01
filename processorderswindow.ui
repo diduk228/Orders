@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ProcessOrdersWindow</class>
+ <widget class="QMainWindow" name="ProcessOrdersWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1056</width>
+    <height>673</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>434</width>
+      <height>30</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QLabel" name="label_5">
+       <property name="text">
+        <string>Имя пользователя: Данил Глебов</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="label_6">
+       <property name="text">
+        <string>Режим: Менеджер</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="text">
+        <string>Вернуться назад</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QPushButton" name="pushButton_3">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>560</y>
+      <width>1021</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Принять изменения</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox_2">
+    <property name="geometry">
+     <rect>
+      <x>910</x>
+      <y>90</y>
+      <width>81</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Отказать</string>
+    </property>
+   </widget>
+   <widget class="QCheckBox" name="checkBox">
+    <property name="geometry">
+     <rect>
+      <x>780</x>
+      <y>90</y>
+      <width>81</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Одобрить</string>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>50</y>
+      <width>1021</width>
+      <height>501</height>
+     </rect>
+    </property>
+    <row>
+     <property name="text">
+      <string>1</string>
+     </property>
+    </row>
+    <column>
+     <property name="text">
+      <string>Имя заказчика</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Заказы  </string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>   Способ доставки   </string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Количество</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Дата</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Справочная информация</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Одобрить</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Отказать</string>
+     </property>
+    </column>
+    <item row="0" column="0">
+     <property name="text">
+      <string>ООО &quot;Умный дом&quot;</string>
+     </property>
+    </item>
+    <item row="0" column="1">
+     <property name="text">
+      <string>Кирпичи</string>
+     </property>
+    </item>
+    <item row="0" column="2">
+     <property name="text">
+      <string>Быстрая</string>
+     </property>
+    </item>
+    <item row="0" column="3">
+     <property name="text">
+      <string>100</string>
+     </property>
+    </item>
+    <item row="0" column="4">
+     <property name="text">
+      <string>18.09.2021</string>
+     </property>
+    </item>
+    <item row="0" column="5">
+     <property name="text">
+      <string>https://vk.com/im?sel=329093199&amp;z=photo272266983_457242859%2Fmail858904</string>
+     </property>
+    </item>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1056</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
