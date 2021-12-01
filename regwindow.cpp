@@ -20,3 +20,20 @@ void RegWindow::on_ComeBack_clicked()
     this->close();
     w->show();
 }
+
+void RegWindow::get_data()
+{
+    QVector<QString> vec;
+    vec.push_back(ui->login->text());
+    vec.push_back(ui->password->text());
+    vec.push_back(ui->phone->text());
+    vec.push_back(ui->person_name->text());
+    vec.push_back(ui->name_company->text());
+    vec.push_back(ui->adress->text());
+    reg_user(vec);
+}
+
+void RegWindow::on_regBtn_clicked()
+{
+    RegWindow::get_data();
+}

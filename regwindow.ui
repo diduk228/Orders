@@ -385,7 +385,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QLineEdit" name="name"/>
+       <widget class="QLineEdit" name="name_company"/>
       </item>
       <item>
        <spacer name="horizontalSpacer_70">

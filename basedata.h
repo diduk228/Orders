@@ -9,9 +9,6 @@
 #include <QVector>
 class BaseData : public User
 {
-private:
-    QSqlDatabase db;
-
 public:
     BaseData(QWidget *parent = nullptr);
     ~BaseData();
