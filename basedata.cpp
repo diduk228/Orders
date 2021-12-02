@@ -224,7 +224,7 @@ bool BaseData::add_order(QVector<QString> data)
     //Подключение к MySql
 
     QSqlQuery *query = new QSqlQuery(db);
-    QString str = QString("INSERT INTO orders (id_product, count_buy, cost_product, sum_product, id_user) VALUES (%1, %2, %3, %4, %5)").arg(data[0]).arg(data[1]).arg(data[2]).arg(data[3]).arg(data[4]);
+    QString str = QString("INSERT INTO orders (id_product, count_buy, cost_product, sum_products, id_user) VALUES (%1, %2, %3, %4, %5)").arg(data[0]).arg(data[1]).arg(data[2]).arg(data[3]).arg(data[4]);
     if(!query->exec(str))
     {
         delete query;
@@ -237,4 +237,39 @@ bool BaseData::add_order(QVector<QString> data)
     db.close();
     QSqlDatabase::removeDatabase("mydb");
     return 1;
+}
+
+QVector<QVector<QString>> BaseData::get_data_from_orders()
+{
+    QVector<QVector<QString>> vec;
+    //Подключение к MySql
+    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL", "mydb");
+    db.setHostName("127.0.0.1");
+    db.setDatabaseName("basic_sql");
+    db.setUserName("root");
+    db.setPassword("admin");
+    if(!db.open())
+    {
+        QMessageBox::warning(this, "Ошибка", "Нет доступа к базе данных" );
+    }
+    //Подключение к MySql
+
+
+    QSqlQuery *query = new QSqlQuery(db);
+    query->exec("SELECT * FROM orders");
+    while (query->next()) {
+        QVector<QString> data;
+        data.push_back(query->value(0).toString());
+        data.push_back(query->value(1).toString());
+        data.push_back(query->value(2).toString());
+        data.push_back(query->value(3).toString());
+        data.push_back(query->value(4).toString());
+        data.push_back(query->value(5).toString());
+        vec.push_back(data);
+    }
+
+    delete query;
+    db.close();
+    QSqlDatabase::removeDatabase("mydb");
+    return vec;
 }

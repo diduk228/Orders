@@ -18,8 +18,8 @@ public:
     int get_count_products();                       // Узнаём сколько товаров в базе
     QVector<QVector<QString>> get_all();            // Получаем все строки с базы
     QVector<QString> get_data_at_id(int id);        // Получаем информация по id в базе товаров
-    QVector<QString> get_data_from_orders();        // Получаем информацию из таблицы заказов
-    bool add_order(QVector<QString> data);          // Добавить заказ в корзину
+    QVector<QVector<QString>> get_data_from_orders();  // Получаем информацию из таблицы заказов
+    bool add_order(QVector<QString> data);          // Добавить заказ в базу
 };
 
 
