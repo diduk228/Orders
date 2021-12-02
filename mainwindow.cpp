@@ -193,3 +193,16 @@ void MainWindow::set_current()
     // Закрываем файл
     file.close();
 }
+
+void MainWindow::on_buy_product_clicked()
+{
+    set_current();
+    QVector<QString> data;
+    data.push_back(m_current_product_id);
+    data.push_back("1");
+    QVector<QString> vec = get_data_at_id(m_current_product_id.toInt());
+    data.push_back(vec[3]);
+    data.push_back(vec[3]);
+    data.push_back("1");
+    add_order(data);
+}
