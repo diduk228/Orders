@@ -215,3 +215,20 @@ void MainWindow::on_buy_product_clicked()
     msgBox.setText("Ваш заказ направлен на обработку!");
     msgBox.exec();
 }
+
+void MainWindow::on_delete_from_basket_clicked()
+{
+    set_current();
+    QMutableVectorIterator<QString> i(ids);
+    while(i.hasNext()) {
+
+      QString currentValue=i.next();
+      if(m_current_product_id==currentValue)
+        i.remove();
+    }
+
+    QMessageBox msgBox(this);
+    msgBox.setWindowTitle("Успешно");
+    msgBox.setText("Данный товар удалён из корзины!");
+    msgBox.exec();
+}

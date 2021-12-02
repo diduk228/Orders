@@ -1,24 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <author/>
- <comment/>
- <exportmacro/>
  <class>MenuBasket</class>
- <widget name="MenuBasket" class="QMainWindow">
+ <widget class="QMainWindow" name="MenuBasket">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>914</width>
+    <height>704</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
   </property>
-  <widget name="menubar" class="QMenuBar"/>
-  <widget name="centralwidget" class="QWidget"/>
-  <widget name="statusbar" class="QStatusBar"/>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>10</y>
+      <width>891</width>
+      <height>541</height>
+     </rect>
+    </property>
+    <column>
+     <property name="text">
+      <string>Название товара</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Количество</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Доставка</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Цена</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Действие</string>
+     </property>
+    </column>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>610</y>
+      <width>891</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Купить товары</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="return_to_menu">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>560</y>
+      <width>891</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Вернуться назад</string>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>914</width>
+     <height>26</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
  </widget>
- <pixmapfunction/>
+ <resources/>
  <connections/>
 </ui>

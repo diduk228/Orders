@@ -34,7 +34,8 @@ private slots:
     void on_go_to_basket_clicked();         // Открывает Корзину
     void on_add_to_basket_clicked();        // Добавляет товар в Корзину
     void onBtnClicked();                    // Узнаём какой товар сейчас смотрит заказчик
-    void on_buy_product_clicked();
+    void on_buy_product_clicked();          //конпка покупки товара
+    void on_delete_from_basket_clicked();   //удаляет товар из корзины
 
 private:
     void init_table();  // Иницилизирует таблицу в главном меню
