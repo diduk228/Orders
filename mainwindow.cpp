@@ -5,6 +5,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    set_settings();
     init_table();
 }
 
@@ -113,6 +114,33 @@ void MainWindow::save_settings()
 
       qWarning("Could not open file");
     }
+
+    // Закрываем файл
+    file.close();
+}
+
+void MainWindow::set_settings()
+{
+
+    // Создаем объект
+    QFile file("C:\\Users\\danil\\Documents\\maket\\Orders\\Settings\\mainwindow.txt");
+
+    // С помощью метода open() открываем файл в режиме чтения
+    if (!file.open(QIODevice::ReadOnly)) {
+      qWarning("Cannot open file for reading"); // если файл не найден, то выводим предупреждение и завершаем выполнение программы
+      return;
+    }
+
+    // Создаем входящий поток, из которого будут считываться данные, и связываем его с нашим файлом
+    QTextStream in(&file);
+
+    // Считываем файл строка за строкой
+    while (!in.atEnd()) { // метод atEnd() возвращает true, если в потоке больше нет данных для чтения
+      QString line = in.readLine(); // метод readLine() считывает одну строку из потока
+       ids.push_back(line);
+    }
+    m_current_product_id = ids[ids.size()-1];
+    ids.pop_back();
 
     // Закрываем файл
     file.close();

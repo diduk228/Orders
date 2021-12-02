@@ -8,6 +8,8 @@
 #include "addgoods.h"
 #include "menubasket.h"
 #include "algorithm"
+#include "QFile"
+#include <QTextStream>
 namespace Ui {
 class MainWindow;
 }
@@ -32,11 +34,14 @@ private slots:
     void on_go_to_basket_clicked();         // Открывает Корзину
     void on_add_to_basket_clicked();        // Добавляет товар в Корзину
     void onBtnClicked();                    // Узнаём какой товар сейчас смотрит заказчик
-    void save_settings();                   // сохраняет переменные
 
 private:
     void init_table();  // Иницилизирует таблицу в главном меню
     void addBtnAt(int row_number, int column_number);  //добавляет в таблицу кнопки
+private:
+    void save_settings();                   // сохраняет переменные
+    void set_settings();                    // Загружает переменные
+
 };
 
 #endif // MAINWINDOW_H
