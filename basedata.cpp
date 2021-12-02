@@ -320,7 +320,7 @@ QString BaseData::get_name_by_id(int id)
     //Подключение к MySql
 
     QSqlQuery *query = new QSqlQuery(db);
-    query->exec(QString("SELECT name FROM orders WHERE id = %1").arg(id));
+    query->exec(QString("SELECT name_company FROM users WHERE id = %1").arg(id));
     while (query->next()) {
         QString name = query->value(0).toString();
         delete query;
@@ -332,4 +332,69 @@ QString BaseData::get_name_by_id(int id)
     db.close();
     QSqlDatabase::removeDatabase("mydb");
     return "";
+}
+
+QString BaseData::get_picture(int id)
+{
+    //Подключение к MySql
+    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL", "mydb");
+    db.setHostName("127.0.0.1");
+    db.setDatabaseName("basic_sql");
+    db.setUserName("root");
+    db.setPassword("admin");
+    if(!db.open())
+    {
+        QMessageBox::warning(this, "Ошибка", "Нет доступа к базе данных" );
+        return 0;
+    }
+    //Подключение к MySql
+
+    QSqlQuery *query = new QSqlQuery(db);
+    query->exec(QString("SELECT path_to_jpg FROM goods WHERE id = %1").arg(id));
+    while (query->next()) {
+        QString name = query->value(0).toString();
+        delete query;
+        db.close();
+        QSqlDatabase::removeDatabase("mydb");
+        return name;
+    }
+    delete query;
+    db.close();
+    QSqlDatabase::removeDatabase("mydb");
+    return "";
+}
+
+QVector<QString> BaseData::get_data_at_login(QString login)
+{
+    QVector<QString> data;
+    //Подключение к MySql
+    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL", "mydb");
+    db.setHostName("127.0.0.1");
+    db.setDatabaseName("basic_sql");
+    db.setUserName("root");
+    db.setPassword("admin");
+    if(!db.open())
+    {
+        QMessageBox::warning(this, "Ошибка", "Нет доступа к базе данных" );
+    }
+    //Подключение к MySql
+
+    QSqlQuery *query = new QSqlQuery(db);
+    query->exec(QString("SELECT * FROM users WHERE login = '%1'").arg(login));
+    while (query->next()) {
+        data.push_back(query->value(0).toString());
+        data.push_back(query->value(1).toString());
+        data.push_back(query->value(2).toString());
+        data.push_back(query->value(3).toString());
+        data.push_back(query->value(4).toString());
+        data.push_back(query->value(5).toString());
+        data.push_back(query->value(6).toString());
+        data.push_back(query->value(7).toString());
+    }
+
+    delete query;
+    db.close();
+    QSqlDatabase::removeDatabase("mydb");
+    return data;
+
 }

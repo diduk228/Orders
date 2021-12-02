@@ -22,6 +22,8 @@ public:
     bool add_order(QVector<QString> data);          // Добавить заказ в базу
     int get_count_orders();                          // Узнаём сколько заказов
     QString get_name_by_id(int id);                  // Возвращает имя человека по id
+    QString get_picture(int id);                     // Возвращает путь к картинки по парамметру
+    QVector<QString> get_data_at_login(QString login);  // Получаем данные о пользователе с помощью login'a
  };
 
 
