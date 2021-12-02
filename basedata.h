@@ -21,7 +21,8 @@ public:
     QVector<QVector<QString>> get_data_from_orders();  // Получаем информацию из таблицы заказов
     bool add_order(QVector<QString> data);          // Добавить заказ в базу
     int get_count_orders();                          // Узнаём сколько заказов
-};
+    QString get_name_by_id(int id);                  // Возвращает имя человека по id
+ };
 
 
 

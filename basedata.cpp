@@ -303,3 +303,33 @@ int BaseData::get_count_orders()
     QSqlDatabase::removeDatabase("mydb");
     return 0;
 }
+
+QString BaseData::get_name_by_id(int id)
+{
+    //Подключение к MySql
+    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL", "mydb");
+    db.setHostName("127.0.0.1");
+    db.setDatabaseName("basic_sql");
+    db.setUserName("root");
+    db.setPassword("admin");
+    if(!db.open())
+    {
+        QMessageBox::warning(this, "Ошибка", "Нет доступа к базе данных" );
+        return 0;
+    }
+    //Подключение к MySql
+
+    QSqlQuery *query = new QSqlQuery(db);
+    query->exec(QString("SELECT name FROM orders WHERE id = %1").arg(id));
+    while (query->next()) {
+        QString name = query->value(0).toString();
+        delete query;
+        db.close();
+        QSqlDatabase::removeDatabase("mydb");
+        return name;
+    }
+    delete query;
+    db.close();
+    QSqlDatabase::removeDatabase("mydb");
+    return "";
+}
