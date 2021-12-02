@@ -3,13 +3,14 @@
 #include <QWidget>
 #include <QString>
 #include <QMainWindow>
-
-
+#include <QTextStream>
+#include <QFile>
 class User : public QMainWindow
 {
 public:
-    User(QString mod, QString name, QString adress, QString phone, QString name_person, QString login, QString password, QWidget *parent = 0);
+    User( QString mod, QString name, QString adress, QString phone, QString name_person, QString login, QString password, QWidget *parent = 0);
 private:
+    int m_id = 0;
     QString m_mod = nullptr;
     QString m_name;
     QString m_adress;
@@ -25,7 +26,10 @@ public:
     QString get_name_person();
     QString get_login();
     QString get_password();
-    void set_user(QString mod, QString name, QString adress, QString phone, QString name_person, QString login, QString password);
+    int get_id();
+    void set_user(int id, QString mod, QString name, QString adress, QString phone, QString name_person, QString login, QString password);
+    void save_user();                   // куки
+    void set_cucki();                   // загружаем куки
 };
 
 #endif // USER_H
