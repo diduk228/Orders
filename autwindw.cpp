@@ -21,6 +21,10 @@ void AutWindw::on_Btn_Enter_clicked()
        return;
    }
 
+   QVector<QString> vec = get_data_at_login(ui->login_line->text());
+   set_user(vec[7],vec[3],vec[6],vec[4],vec[5],vec[1],vec[2]);
+
+
    QMessageBox msgBox(this);
    msgBox.setWindowTitle("Успешно");
    msgBox.setText("Вы успешно авторизовались!");

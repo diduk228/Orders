@@ -20,7 +20,7 @@ QString User::get_adress()
     return m_adress;
 }
 
-int User::get_phone()
+QString User::get_phone()
 {
     return m_phone;
 }
@@ -40,7 +40,7 @@ QString User::get_password()
     return m_password;
 }
 
-void User::set(QString mod, QString name, QString adress, int phone, QString name_person, QString login, QString password)
+void User::set_user(QString mod, QString name, QString adress, QString phone, QString name_person, QString login, QString password)
 {
     m_mod = mod;
     m_name = name;
