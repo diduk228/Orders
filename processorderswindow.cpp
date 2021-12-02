@@ -83,3 +83,10 @@ void ProcessOrdersWindow::addCheckBoxAt(int row_number, int column_number, int s
 
     */
 }
+
+void ProcessOrdersWindow::on_pushButton_2_clicked()
+{
+    MainWindow *w = new MainWindow(this);
+    this->close();
+    w->show();
+}
