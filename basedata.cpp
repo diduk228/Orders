@@ -24,7 +24,7 @@ bool BaseData::init_user(QString login, QString password)
 
     //Запрос
     QSqlQuery *query = new QSqlQuery(db);
-    query->exec(QString("SELECT mod_person, name_person, adress, phone, name_company FROM users WHERE login = '%1' AND password = '%2'").arg(login).arg(password)); // запрашиваем все поля для заданного пароля и логин
+    query->exec(QString("SELECT id, mod_person, name_person, adress, phone, name_company FROM users WHERE login = '%1' AND password = '%2'").arg(login).arg(password)); // запрашиваем все поля для заданного пароля и логин
 
     if(!query->next())
     {
@@ -36,12 +36,13 @@ bool BaseData::init_user(QString login, QString password)
     }
     else
     {
-        QString mod = query->value(0).toString();
-        QString name = query->value(1).toString();
-        QString adress = query->value(2).toString();
-        int phone = query->value(3).toString().toInt();
-        QString name_person = query->value(4).toString();
-        User::set(mod, name, adress, phone, name_person, login, password);
+        int id = query->value(0).toString().toInt();
+        QString mod = query->value(1).toString();
+        QString name = query->value(2).toString();
+        QString adress = query->value(3).toString();
+        QString phone = query->value(4).toString();
+        QString name_person = query->value(5).toString();
+        User::set_user(id, mod, name, adress, phone, name_person, login, password);
         db.close();
         QSqlDatabase::removeDatabase("mydb");
         delete  query;
