@@ -5,13 +5,13 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    set_settings();
+    set_ids();
     init_table();
 }
 
 MainWindow::~MainWindow()
 {
-    save_settings();
+    //save_settings();
     delete ui;
 }
 
@@ -87,44 +87,46 @@ void MainWindow::onBtnClicked()
          QTableWidgetItem *item = ui->tableWidget->item(index.row(), index.column()-2);
          m_current_product_id = item->text();
      }
+     save_current();
 }
 
 void MainWindow::on_add_to_basket_clicked()
 {
+    set_current();
+    //set_ids();
     for(int i = 0; i < ids.length(); i++)
         if ( ids[i] == m_current_product_id ) return;
     ids.push_back(m_current_product_id);
+    save_ids();
 }
 
-void MainWindow::save_settings()
+void MainWindow::save_ids()
 {
     QTextStream out(stdout);
 
     // Создаем объект класса QFile и связываем его с указанным именем файла
-    QString filename = "C:\\Users\\danil\\Documents\\maket\\Orders\\Settings\\mainwindow.txt";
+    QString filename = "C:\\Users\\danil\\Documents\\maket\\Orders\\Settings\\mainwindow_ids.txt";
     QFile file(filename);
 
     // Открываем файл в режиме "Только для записи"
     if (file.open(QIODevice::WriteOnly)) {
       QTextStream out(&file); // поток записываемых данных направляем в файл
-
+      out << ids.length() << "\n";
       for(int i = 0; i < ids.length(); i++)
           out << ids[i] << "\n";
-
     } else {
 
       qWarning("Could not open file");
     }
-    out << m_current_product_id;
     // Закрываем файл
     file.close();
 }
 
-void MainWindow::set_settings()
+void MainWindow::set_ids()
 {
 
     // Создаем объект
-    QFile file("C:\\Users\\danil\\Documents\\maket\\Orders\\Settings\\mainwindow.txt");
+    QFile file("C:\\Users\\danil\\Documents\\maket\\Orders\\Settings\\mainwindow_ids.txt");
 
     // С помощью метода open() открываем файл в режиме чтения
     if (!file.open(QIODevice::ReadOnly)) {
@@ -134,14 +136,59 @@ void MainWindow::set_settings()
 
     // Создаем входящий поток, из которого будут считываться данные, и связываем его с нашим файлом
     QTextStream in(&file);
-
     // Считываем файл строка за строкой
-    while (!in.atEnd()) { // метод atEnd() возвращает true, если в потоке больше нет данных для чтения
+    int size = in.readLine().toInt();
+    for(int i = 0; i < size; i++) { // метод atEnd() возвращает true, если в потоке больше нет данных для чтения
       QString line = in.readLine(); // метод readLine() считывает одну строку из потока
        ids.push_back(line);
     }
-    m_current_product_id = ids[ids.size()-1];
-    ids.pop_back();
+
+    // Закрываем файл
+    file.close();
+}
+
+void MainWindow::save_current()
+{
+    QTextStream out(stdout);
+
+    // Создаем объект класса QFile и связываем его с указанным именем файла
+    QString filename = "C:\\Users\\danil\\Documents\\maket\\Orders\\Settings\\mainwindow_current.txt";
+    QFile file(filename);
+
+    // Открываем файл в режиме "Только для записи"
+    if (file.open(QIODevice::WriteOnly)) {
+      QTextStream out(&file); // поток записываемых данных направляем в файл
+      if(!m_current_product_id.isEmpty())
+        out << m_current_product_id;
+      else
+          out << -1;
+    } else {
+
+      qWarning("Could not open file");
+    }
+    // Закрываем файл
+    file.close();
+}
+
+void MainWindow::set_current()
+{
+
+    // Создаем объект
+    QFile file("C:\\Users\\danil\\Documents\\maket\\Orders\\Settings\\mainwindow_current.txt");
+
+    // С помощью метода open() открываем файл в режиме чтения
+    if (!file.open(QIODevice::ReadOnly)) {
+      qWarning("Cannot open file for reading"); // если файл не найден, то выводим предупреждение и завершаем выполнение программы
+      return;
+    }
+
+    // Создаем входящий поток, из которого будут считываться данные, и связываем его с нашим файлом
+    QTextStream in(&file);
+    QString cur = in.readLine();
+    if(QString::compare(cur, "-1", Qt::CaseInsensitive))
+    {
+        m_current_product_id = cur;
+    }
 
     // Закрываем файл
     file.close();
