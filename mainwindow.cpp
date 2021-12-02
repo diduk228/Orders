@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
+    save_settings();
     delete ui;
 }
 
@@ -90,7 +91,8 @@ void MainWindow::onBtnClicked()
 
 void MainWindow::on_add_to_basket_clicked()
 {
-    if (std::find(ids.begin(), ids.end(), m_current_product_id) == m_current_product_id) return;
+    for(int i = 0; i < ids.length(); i++)
+        if ( ids[i] == m_current_product_id ) return;
     ids.push_back(m_current_product_id);
 }
 
@@ -108,13 +110,12 @@ void MainWindow::save_settings()
 
       for(int i = 0; i < ids.length(); i++)
           out << ids[i] << "\n";
-      out << m_current_product_id;
 
     } else {
 
       qWarning("Could not open file");
     }
-
+    out << m_current_product_id;
     // Закрываем файл
     file.close();
 }
