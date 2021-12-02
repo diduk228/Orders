@@ -2,8 +2,10 @@
 #define USER_H
 #include <QWidget>
 #include <QString>
+#include <QMainWindow>
 
-class User : public QWidget
+
+class User : public QMainWindow
 {
 public:
     User(QString mod, QString name, QString adress, int phone, QString name_person, QString login, QString password, QWidget *parent = 0);

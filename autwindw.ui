@@ -258,7 +258,7 @@
        </spacer>
       </item>
       <item>
-       <widget class="QPushButton" name="pushButton_8">
+       <widget class="QPushButton" name="regtoBtn">
         <property name="text">
          <string>Зарегистрироваться</string>
         </property>

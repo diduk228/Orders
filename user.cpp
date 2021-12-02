@@ -1,5 +1,5 @@
 #include "user.h"
-User::User(QString mod, QString name, QString adress, int phone, QString name_person, QString login, QString password, QWidget *parent) : QWidget(parent), m_mod(mod),
+User::User(QString mod, QString name, QString adress, int phone, QString name_person, QString login, QString password, QWidget *parent) : QMainWindow(parent), m_mod(mod),
     m_name(name), m_adress(adress), m_phone(phone), m_name_person(name_person), m_login(login), m_password(password)
 {
 
