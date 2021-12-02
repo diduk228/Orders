@@ -107,12 +107,7 @@
     </column>
     <column>
      <property name="text">
-      <string>Заказы  </string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
-      <string>   Способ доставки   </string>
+      <string>Заказ</string>
      </property>
     </column>
     <column>
@@ -122,12 +117,17 @@
     </column>
     <column>
      <property name="text">
-      <string>Дата</string>
+      <string>Цена за один</string>
      </property>
     </column>
     <column>
      <property name="text">
-      <string>Справочная информация</string>
+      <string>Сумма</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Способ доставки   </string>
      </property>
     </column>
     <column>
@@ -152,22 +152,22 @@
     </item>
     <item row="0" column="2">
      <property name="text">
-      <string>Быстрая</string>
+      <string>100</string>
      </property>
     </item>
     <item row="0" column="3">
      <property name="text">
-      <string>100</string>
+      <string>10</string>
      </property>
     </item>
     <item row="0" column="4">
      <property name="text">
-      <string>18.09.2021</string>
+      <string>1000</string>
      </property>
     </item>
     <item row="0" column="5">
      <property name="text">
-      <string>https://vk.com/im?sel=329093199&amp;z=photo272266983_457242859%2Fmail858904</string>
+      <string>Fast</string>
      </property>
     </item>
    </widget>
