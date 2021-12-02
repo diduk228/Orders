@@ -1,6 +1,5 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
 MainWindow::MainWindow(QWidget *parent) :
     BaseData(parent),
     ui(new Ui::MainWindow)
@@ -35,24 +34,20 @@ void MainWindow::on_add_goods_triggered()
     add->show();
 }
 
-void MainWindow::on_pushButton_3_clicked()
-{
-    MenuBasket *add = new MenuBasket(this);
-    this->close();
-    add->show();
-}
 
 void MainWindow::init_table()
 {
     int count =  get_count_products();
-    ui->tableWidget->setColumnCount(2);
+    ui->tableWidget->setColumnCount(3);
     ui->tableWidget->setRowCount(count);
     QVector<QVector<QString>> vec =  get_all();
     for(int i = 0; i < count; i++)
     {
+            QTableWidgetItem *itm2 = new QTableWidgetItem(tr("%1").arg(vec[i][0]));
+            ui->tableWidget->setItem(i,0, itm2);
             QTableWidgetItem *itm = new QTableWidgetItem(tr("%1").arg(vec[i][1]));
-            ui->tableWidget->setItem(i,0, itm);
-            addBtnAt(i, 1);
+            ui->tableWidget->setItem(i,1, itm);
+            addBtnAt(i, 2);
 
     }
 }
@@ -71,6 +66,54 @@ void MainWindow::addBtnAt(int row_number, int column_number)
        * exhibiting state of the checkbox in the Checked, Unchecked otherwise
        * */
 
-
+      connect( quitBtn, SIGNAL( clicked() ), SLOT( onBtnClicked() ) );
       ui->tableWidget->setCellWidget(row_number,column_number, checkBoxWidget);
+}
+
+void MainWindow::on_go_to_basket_clicked()
+{
+    MenuBasket *add = new MenuBasket(ids, this);
+    this->close();
+    add->show();
+}
+
+void MainWindow::onBtnClicked()
+{
+     if( QPushButton* btn = qobject_cast< QPushButton* >( sender() ) )
+     {
+         QModelIndex index = ui->tableWidget->indexAt( btn->parentWidget()->pos() );
+         QTableWidgetItem *item = ui->tableWidget->item(index.row(), index.column()-2);
+         m_current_product_id = item->text();
+     }
+}
+
+void MainWindow::on_add_to_basket_clicked()
+{
+    if (std::find(ids.begin(), ids.end(), m_current_product_id) == m_current_product_id) return;
+    ids.push_back(m_current_product_id);
+}
+
+void MainWindow::save_settings()
+{
+    QTextStream out(stdout);
+
+    // Создаем объект класса QFile и связываем его с указанным именем файла
+    QString filename = "C:\\Users\\danil\\Documents\\maket\\Orders\\Settings\\mainwindow.txt";
+    QFile file(filename);
+
+    // Открываем файл в режиме "Только для записи"
+    if (file.open(QIODevice::WriteOnly)) {
+      QTextStream out(&file); // поток записываемых данных направляем в файл
+
+      for(int i = 0; i < ids.length(); i++)
+          out << ids[i] << "\n";
+      out << m_current_product_id;
+
+    } else {
+
+      qWarning("Could not open file");
+    }
+
+    // Закрываем файл
+    file.close();
 }
