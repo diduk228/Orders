@@ -42,7 +42,7 @@ void ProcessOrdersWindow::init_table()
             if(j == 0)
             {
                 addCheckBoxAt(i, 6,0,"Принять");
-                addCheckBoxAt(i, 6,0,"Отказать");
+                addCheckBoxAt(i, 7,0,"Отказать");
             }
         }
 
