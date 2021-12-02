@@ -86,6 +86,10 @@ void MainWindow::onBtnClicked()
          QModelIndex index = ui->tableWidget->indexAt( btn->parentWidget()->pos() );
          QTableWidgetItem *item = ui->tableWidget->item(index.row(), index.column()-2);
          m_current_product_id = item->text();
+         get_picture(m_current_product_id.toInt());
+         QString pic = get_picture(m_current_product_id.toInt());
+         QPixmap pixmap(pic);
+         ui->picture->setPixmap(pixmap);
      }
      save_current();
 }

@@ -34,13 +34,11 @@ private slots:
     void on_go_to_basket_clicked();         // Открывает Корзину
     void on_add_to_basket_clicked();        // Добавляет товар в Корзину
     void onBtnClicked();                    // Узнаём какой товар сейчас смотрит заказчик
-
     void on_buy_product_clicked();
 
 private:
     void init_table();  // Иницилизирует таблицу в главном меню
     void addBtnAt(int row_number, int column_number);  //добавляет в таблицу кнопки
-private:
     void save_ids();                   // сохраняет переменную
     void set_ids();                    // Загружает переменную
     void save_current();                   // сохраняет переменную
