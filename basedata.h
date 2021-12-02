@@ -17,6 +17,7 @@ public:
     bool add_product(QVector<QString> data);        // Добавляет в базу данных данные о продукте
     int get_count_products();                       // Узнаём сколько товаров в базе
     QVector<QVector<QString>> get_all();            // Получаем все строки с базы
+    QVector<QString> get_data_at_id(int id);        // Получаем информация по id
 };
 
 

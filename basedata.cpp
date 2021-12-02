@@ -170,5 +170,40 @@ QVector<QVector<QString>> BaseData::get_all()
         data.push_back(query->value(3).toString());
         vec.push_back(data);
     }
+
+    delete query;
+    db.close();
+    QSqlDatabase::removeDatabase("mydb");
     return vec;
+}
+
+QVector<QString> BaseData::get_data_at_id(int id)
+{
+    QVector<QString> data;
+    //Подключение к MySql
+    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL", "mydb");
+    db.setHostName("127.0.0.1");
+    db.setDatabaseName("basic_sql");
+    db.setUserName("root");
+    db.setPassword("admin");
+    if(!db.open())
+    {
+        QMessageBox::warning(this, "Ошибка", "Нет доступа к базе данных" );
+    }
+    //Подключение к MySql
+
+    QSqlQuery *query = new QSqlQuery(db);
+    query->exec(QString("SELECT name_goods, count_goods, dilivery, cost FROM goods WHERE id = %1").arg(id));
+    while (query->next()) {
+        data.push_back(query->value(0).toString());
+        data.push_back(query->value(1).toString());
+        data.push_back(query->value(2).toString());
+        data.push_back(query->value(3).toString());
+    }
+
+    delete query;
+    db.close();
+    QSqlDatabase::removeDatabase("mydb");
+    return data;
+
 }
