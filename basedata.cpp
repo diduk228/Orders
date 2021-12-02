@@ -273,3 +273,33 @@ QVector<QVector<QString>> BaseData::get_data_from_orders()
     QSqlDatabase::removeDatabase("mydb");
     return vec;
 }
+
+int BaseData::get_count_orders()
+{
+    //Подключение к MySql
+    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL", "mydb");
+    db.setHostName("127.0.0.1");
+    db.setDatabaseName("basic_sql");
+    db.setUserName("root");
+    db.setPassword("admin");
+    if(!db.open())
+    {
+        QMessageBox::warning(this, "Ошибка", "Нет доступа к базе данных" );
+        return 0;
+    }
+    //Подключение к MySql
+
+    QSqlQuery *query = new QSqlQuery(db);
+    query->exec("SELECT count(*) FROM orders");
+    while (query->next()) {
+        int count = query->value(0).toString().toInt();
+        delete query;
+        db.close();
+        QSqlDatabase::removeDatabase("mydb");
+        return count;
+    }
+    delete query;
+    db.close();
+    QSqlDatabase::removeDatabase("mydb");
+    return 0;
+}

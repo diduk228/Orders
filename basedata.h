@@ -20,6 +20,7 @@ public:
     QVector<QString> get_data_at_id(int id);        // Получаем информация по id в базе товаров
     QVector<QVector<QString>> get_data_from_orders();  // Получаем информацию из таблицы заказов
     bool add_order(QVector<QString> data);          // Добавить заказ в базу
+    int get_count_orders();                          // Узнаём сколько заказов
 };
 
 
