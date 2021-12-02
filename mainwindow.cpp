@@ -7,6 +7,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     set_ids();
     init_table();
+    set_cucki();
 }
 
 MainWindow::~MainWindow()
@@ -202,11 +203,15 @@ void MainWindow::on_buy_product_clicked()
 {
     set_current();
     QVector<QString> data;
-    data.push_back(m_current_product_id);
-    data.push_back("1");
+    data.push_back(m_current_product_id);  //id продукта
+    data.push_back(ui->count_buy->text());                   //количество купленного товара
     QVector<QString> vec = get_data_at_id(m_current_product_id.toInt());
-    data.push_back(vec[3]);
-    data.push_back(vec[3]);
-    data.push_back("1");
+    data.push_back(vec[3]); //цена продукта
+    data.push_back(QString::number(vec[3].toFloat() * ui->count_buy->text().toFloat())); // Цена продукта * количество купленного товара
+    data.push_back(QString::number(get_id()));    // id user'a
     add_order(data);
+    QMessageBox msgBox(this);
+    msgBox.setWindowTitle("Успешно");
+    msgBox.setText("Ваш заказ направлен на обработку!");
+    msgBox.exec();
 }
