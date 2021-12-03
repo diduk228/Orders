@@ -6,6 +6,7 @@ MenuBasket::MenuBasket(QWidget *parent) :
     ui(new Ui::MenuBasket)
 {
     ui->setupUi(this);
+    set_cucki();
 }
 
 MenuBasket::MenuBasket(QVector<QString> ids, QWidget *parent) :
@@ -14,6 +15,7 @@ MenuBasket::MenuBasket(QVector<QString> ids, QWidget *parent) :
 {
     ui->setupUi(this);
     init_table(ids);
+    set_cucki();
 }
 
 MenuBasket::~MenuBasket()
@@ -80,11 +82,20 @@ void MenuBasket::on_buy_goods_clicked()
                 QString id = ui->tableWidget->item(i, 0)->text(); //id товара
                 req_change_goods(id, count_buy);
 
+                QVector<QString> data;
+                data.push_back(id);  //id продукта
+                data.push_back(count_buy);                   //количество купленного товара
+                QVector<QString> vec = get_data_at_id(id.toInt());
+                data.push_back(vec[3]); //цена продукта
+                data.push_back(QString::number(vec[3].toFloat() * count_buy.toFloat())); // Цена продукта * количество купленного товара
+                data.push_back(QString::number(get_id()));    // id user'a
+                add_order(data);
+
             }
     }
 
     QMessageBox msgBox(this);
     msgBox.setWindowTitle("Успешно");
-    msgBox.setText("Изменения приняты");
+    msgBox.setText("Ваш заказ направлен на обработку!");
     msgBox.exec();
 }

@@ -35,7 +35,7 @@
     </column>
     <column>
      <property name="text">
-      <string>Количество</string>
+      <string>Купить штук</string>
      </property>
     </column>
     <column>
@@ -45,7 +45,7 @@
     </column>
     <column>
      <property name="text">
-      <string>Цена</string>
+      <string>Цена за штуку</string>
      </property>
     </column>
     <column>
