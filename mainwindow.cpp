@@ -8,6 +8,10 @@ MainWindow::MainWindow(QWidget *parent) :
     set_ids();
     init_table();
     set_cucki();
+    if(get_mod() == "Order")
+    {
+        ui->menu_2->menuAction()->setVisible(false);
+    }
 }
 
 MainWindow::~MainWindow()
