@@ -430,3 +430,34 @@ bool BaseData::req_change_goods(QString id, QString couny_buy)
     QSqlDatabase::removeDatabase("mydb");
     return 1;
 }
+
+bool BaseData::req_delete_orders(QString id)
+{
+    //Подключение к MySql
+    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL", "mydb");
+    db.setHostName("127.0.0.1");
+    db.setDatabaseName("basic_sql");
+    db.setUserName("root");
+    db.setPassword("admin");
+    if(!db.open())
+    {
+        QMessageBox::warning(this, "Ошибка", "Нет доступа к базе данных" );
+        return 0;
+    }
+    //Подключение к MySql
+
+    QSqlQuery *query = new QSqlQuery(db);
+    QString str = QString(QString("DELETE FROM orders WHERE id = %1").arg(id));
+    if(!query->exec(str))
+    {
+        delete query;
+        db.close();
+        QSqlDatabase::removeDatabase("mydb");
+        QMessageBox::warning(this, "Ошибка", "Введены не корректные данные." );
+        return 0;
+    }
+    delete query;
+    db.close();
+    QSqlDatabase::removeDatabase("mydb");
+    return 1;
+}

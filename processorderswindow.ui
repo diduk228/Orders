@@ -102,6 +102,11 @@
     </column>
     <column>
      <property name="text">
+      <string>id_продукта</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
       <string>Имя заказчика</string>
      </property>
     </column>

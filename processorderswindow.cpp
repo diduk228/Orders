@@ -19,12 +19,13 @@ void ProcessOrdersWindow::init_table()
     QVector<QVector<QString>> res;
     QVector<QVector<QString>> vec = get_data_from_orders();
     int count =  get_count_orders();
-    ui->tableWidget->setColumnCount(9);
+    ui->tableWidget->setColumnCount(10);
     ui->tableWidget->setRowCount(count);
     for(int i = 0; i < count; i++)
     {
         QVector<QString> under_vec;
         QVector<QString> goods = get_data_at_id(vec[i][1].toInt());
+        under_vec.push_back(vec[i][0]);
         under_vec.push_back(vec[i][1]);
         under_vec.push_back(get_name_by_id(vec[i][5].toInt()));
         under_vec.push_back(goods[0]);
@@ -36,19 +37,20 @@ void ProcessOrdersWindow::init_table()
     }
     for(int i = 0; i < count; i++)
     {
-        for(int j = 0; j < 7; j++)
+        for(int j = 0; j < 8; j++)
         {
             QTableWidgetItem *itm = new QTableWidgetItem(tr("%1").arg(res[i][j]));
             ui->tableWidget->setItem(i,j, itm);
             if(j == 0)
             {
-                addCheckBoxAt(i, 7,"Принять");
-                addCheckBoxAt(i, 8,"Отказать");
+                addCheckBoxAt(i, 8,"Принять");
+                addCheckBoxAt(i, 9,"Отказать");
             }
         }
 
     }
-    addCheckBoxAt(count, 7,"Принять");
+    ui->tableWidget->setColumnHidden(0, true);
+
 }
 
 void ProcessOrdersWindow::addCheckBoxAt(int row_number, int column_number, QString name)
@@ -62,19 +64,6 @@ void ProcessOrdersWindow::addCheckBoxAt(int row_number, int column_number, QStri
          checkBoxItem->data(Qt::CheckStateRole);
          checkBoxItem->setCheckState(Qt::Unchecked);
          ui->tableWidget->setItem(row_number,column_number,checkBoxItem);
-
-
-
-     // Another way to add check box as item
-    /*
-
-   // QTableWidgetItem *checkBoxItem = new QTableWidgetItem("checkbox string ");
-    QTableWidgetItem *checkBoxItem = new QTableWidgetItem();
-    checkBoxItem->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
-    checkBoxItem->setCheckState(Qt::Checked);
-    ui->job_table_view->setItem(row_number,column_number,checkBoxItem);
-
-    */
 }
 
 void ProcessOrdersWindow::on_pushButton_2_clicked()
@@ -89,19 +78,25 @@ void ProcessOrdersWindow::on_pushButton_3_clicked()
     for(int i = 0; i < ui->tableWidget->rowCount(); i++){
 
 
-            if (ui->tableWidget->item(i, 7)->checkState()==Qt::Checked) //принять
+            if (ui->tableWidget->item(i, 8)->checkState()==Qt::Checked) //принять
             {
-                QString count_buy = ui->tableWidget->item(i, 3)->text(); // количество купленного
-                QString id = ui->tableWidget->item(i, 0)->text(); //id
+                QString count_buy = ui->tableWidget->item(i, 4)->text(); // количество купленного
+                QString id = ui->tableWidget->item(i, 1)->text(); //id товара
+                QString id_order = ui->tableWidget->item(i, 0)->text(); //id заказа
                 req_change_goods(id, count_buy);
+                req_delete_orders(id_order);
 
             }
-            /*
-            QCheckBox* pCheckB2(qobject_cast<QCheckBox*>(ui->tableWidget->cellWidget(i, 8))); //принять
-            if(pCheckB2->isChecked())  // отказать
+            if (ui->tableWidget->item(i, 9)->checkState()==Qt::Checked) //отказать
             {
-
-            }*/
+                QString id = ui->tableWidget->item(i, 0)->text(); //id заказа
+                req_delete_orders(id);
+            }
     }
+
+    QMessageBox msgBox(this);
+    msgBox.setWindowTitle("Успешно");
+    msgBox.setText("Изменения приняты");
+    msgBox.exec();
 
 }
