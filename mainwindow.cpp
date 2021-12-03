@@ -75,6 +75,7 @@ void MainWindow::addBtnAt(int row_number, int column_number)
 
 void MainWindow::on_go_to_basket_clicked()
 {
+    save_ids();
     MenuBasket *add = new MenuBasket(ids, this);
     this->close();
     add->show();
@@ -102,7 +103,10 @@ void MainWindow::on_add_to_basket_clicked()
     for(int i = 0; i < ids.length(); i++)
         if ( ids[i] == m_current_product_id ) return;
     ids.push_back(m_current_product_id);
-    save_ids();
+    QMessageBox msgBox(this);
+    msgBox.setWindowTitle("Успешно");
+    msgBox.setText("Товар добавлен в корзину!");
+    msgBox.exec();
 }
 
 void MainWindow::save_ids()
