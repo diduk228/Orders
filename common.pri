@@ -1,0 +1,5 @@
+INCLUDEPATH += "C:\Users\danil\Documents\maket\Orders"
+HEADERS += "C:\Users\danil\Documents\maket\Orders\basedata.h"
+SOURCES += "C:\Users\danil\Documents\maket\Orders\basedata.cpp"
+HEADERS += "C:\Users\danil\Documents\maket\Orders\user.h"
+SOURCES += "C:\Users\danil\Documents\maket\Orders\user.cpp"
