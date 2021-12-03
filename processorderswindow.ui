@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1056</width>
+    <width>1172</width>
     <height>673</height>
    </rect>
   </property>
@@ -52,7 +52,7 @@
      <rect>
       <x>0</x>
       <y>560</y>
-      <width>1021</width>
+      <width>1131</width>
       <height>51</height>
      </rect>
     </property>
@@ -91,15 +91,15 @@
      <rect>
       <x>0</x>
       <y>50</y>
-      <width>1021</width>
+      <width>1131</width>
       <height>501</height>
      </rect>
     </property>
-    <row>
+    <column>
      <property name="text">
-      <string>1</string>
+      <string>id</string>
      </property>
-    </row>
+    </column>
     <column>
      <property name="text">
       <string>Имя заказчика</string>
@@ -140,36 +140,6 @@
       <string>Отказать</string>
      </property>
     </column>
-    <item row="0" column="0">
-     <property name="text">
-      <string>ООО &quot;Умный дом&quot;</string>
-     </property>
-    </item>
-    <item row="0" column="1">
-     <property name="text">
-      <string>Кирпичи</string>
-     </property>
-    </item>
-    <item row="0" column="2">
-     <property name="text">
-      <string>100</string>
-     </property>
-    </item>
-    <item row="0" column="3">
-     <property name="text">
-      <string>10</string>
-     </property>
-    </item>
-    <item row="0" column="4">
-     <property name="text">
-      <string>1000</string>
-     </property>
-    </item>
-    <item row="0" column="5">
-     <property name="text">
-      <string>Fast</string>
-     </property>
-    </item>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -177,7 +147,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1056</width>
+     <width>1172</width>
      <height>26</height>
     </rect>
    </property>

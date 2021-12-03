@@ -19,12 +19,13 @@ void ProcessOrdersWindow::init_table()
     QVector<QVector<QString>> res;
     QVector<QVector<QString>> vec = get_data_from_orders();
     int count =  get_count_orders();
-    ui->tableWidget->setColumnCount(8);
+    ui->tableWidget->setColumnCount(9);
     ui->tableWidget->setRowCount(count);
     for(int i = 0; i < count; i++)
     {
         QVector<QString> under_vec;
         QVector<QString> goods = get_data_at_id(vec[i][1].toInt());
+        under_vec.push_back(vec[i][1]);
         under_vec.push_back(get_name_by_id(vec[i][5].toInt()));
         under_vec.push_back(goods[0]);
         under_vec.push_back(vec[i][2]);
@@ -35,41 +36,33 @@ void ProcessOrdersWindow::init_table()
     }
     for(int i = 0; i < count; i++)
     {
-        for(int j = 0; j < 6; j++)
+        for(int j = 0; j < 7; j++)
         {
             QTableWidgetItem *itm = new QTableWidgetItem(tr("%1").arg(res[i][j]));
             ui->tableWidget->setItem(i,j, itm);
             if(j == 0)
             {
-                addCheckBoxAt(i, 6,0,"Принять");
-                addCheckBoxAt(i, 7,0,"Отказать");
+                addCheckBoxAt(i, 7,"Принять");
+                addCheckBoxAt(i, 8,"Отказать");
             }
         }
 
     }
+    addCheckBoxAt(count, 7,"Принять");
 }
 
-void ProcessOrdersWindow::addCheckBoxAt(int row_number, int column_number, int state, QString name)
+void ProcessOrdersWindow::addCheckBoxAt(int row_number, int column_number, QString name)
 {
 
     // Create a widget that will contain a checkbox
-     QWidget *checkBoxWidget = new QWidget();
-     QCheckBox *checkBox = new QCheckBox();      // We declare and initialize the checkbox
-     checkBox->setText(name);
-     QHBoxLayout *layoutCheckBox = new QHBoxLayout(checkBoxWidget); // create a layer with reference to the widget
-     layoutCheckBox->addWidget(checkBox);            // Set the checkbox in the layer
-     layoutCheckBox->setAlignment(Qt::AlignCenter);  // Center the checkbox
-     layoutCheckBox->setContentsMargins(0,0,0,0);    // Set the zero padding
-     /* Check on the status of odd if an odd device,
-       * exhibiting state of the checkbox in the Checked, Unchecked otherwise
-       * */
+    // заполнение таблицы
 
-      if(state == 1){
-          checkBox->setChecked(true);
-      } else {
-          checkBox->setChecked(false);
-      }
-      ui->tableWidget->setCellWidget(row_number,column_number, checkBoxWidget);
+         QTableWidgetItem *checkBoxItem = new QTableWidgetItem();
+         checkBoxItem->setText(name);
+         checkBoxItem->data(Qt::CheckStateRole);
+         checkBoxItem->setCheckState(Qt::Unchecked);
+         ui->tableWidget->setItem(row_number,column_number,checkBoxItem);
+
 
 
      // Another way to add check box as item
@@ -89,4 +82,26 @@ void ProcessOrdersWindow::on_pushButton_2_clicked()
     MainWindow *w = new MainWindow(this);
     this->close();
     w->show();
+}
+
+void ProcessOrdersWindow::on_pushButton_3_clicked()
+{
+    for(int i = 0; i < ui->tableWidget->rowCount(); i++){
+
+
+            if (ui->tableWidget->item(i, 7)->checkState()==Qt::Checked) //принять
+            {
+                QString count_buy = ui->tableWidget->item(i, 3)->text(); // количество купленного
+                QString id = ui->tableWidget->item(i, 0)->text(); //id
+                req_change_goods(id, count_buy);
+
+            }
+            /*
+            QCheckBox* pCheckB2(qobject_cast<QCheckBox*>(ui->tableWidget->cellWidget(i, 8))); //принять
+            if(pCheckB2->isChecked())  // отказать
+            {
+
+            }*/
+    }
+
 }

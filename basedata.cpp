@@ -1,5 +1,5 @@
 #include "basedata.h"
-BaseData::BaseData(QWidget *parent) : User(nullptr, nullptr, nullptr, 0, nullptr, nullptr, nullptr,parent)
+BaseData::BaseData(QWidget *parent) : User( nullptr, nullptr, nullptr, 0, nullptr, nullptr, nullptr,parent)
 {
 }
 BaseData::~BaseData()
@@ -42,7 +42,7 @@ bool BaseData::init_user(QString login, QString password)
         QString adress = query->value(3).toString();
         QString phone = query->value(4).toString();
         QString name_person = query->value(5).toString();
-        User::set_user(id, mod, name, adress, phone, name_person, login, password);
+        set_user(id, mod, name, adress, phone, name_person, login, password);
         db.close();
         QSqlDatabase::removeDatabase("mydb");
         delete  query;
@@ -398,4 +398,35 @@ QVector<QString> BaseData::get_data_at_login(QString login)
     QSqlDatabase::removeDatabase("mydb");
     return data;
 
+}
+
+bool BaseData::req_change_goods(QString id, QString couny_buy)
+{
+    //Подключение к MySql
+    QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL", "mydb");
+    db.setHostName("127.0.0.1");
+    db.setDatabaseName("basic_sql");
+    db.setUserName("root");
+    db.setPassword("admin");
+    if(!db.open())
+    {
+        QMessageBox::warning(this, "Ошибка", "Нет доступа к базе данных" );
+        return 0;
+    }
+    //Подключение к MySql
+
+    QSqlQuery *query = new QSqlQuery(db);
+    QString str = QString(QString("UPDATE goods SET count_goods = count_goods - %1 WHERE id = %2").arg(couny_buy).arg(id));
+    if(!query->exec(str))
+    {
+        delete query;
+        db.close();
+        QSqlDatabase::removeDatabase("mydb");
+        QMessageBox::warning(this, "Ошибка", "Введены не корректные данные." );
+        return 0;
+    }
+    delete query;
+    db.close();
+    QSqlDatabase::removeDatabase("mydb");
+    return 1;
 }
