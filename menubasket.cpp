@@ -25,12 +25,13 @@ void MenuBasket::init_table(QVector<QString> ids)
 {
 
     QVector<QVector<QString>> res;
-    ui->tableWidget->setColumnCount(5);
+    ui->tableWidget->setColumnCount(6);
     ui->tableWidget->setRowCount(ids.size());
     for(int i = 0; i < ids.size(); i++)
     {
         QVector<QString> vec =  get_data_at_id(ids[i].toInt());
         QVector<QString> under;
+        under.push_back(ids[i]);
         under.push_back(vec[0]);
         under.push_back(vec[1]);
         under.push_back(vec[2]);
@@ -39,52 +40,27 @@ void MenuBasket::init_table(QVector<QString> ids)
     }
     for(int i = 0; i < ids.size(); i++)
     {
-        for(int j = 0; j < 4; j++) {
+        for(int j = 0; j < 5; j++) {
 
             QTableWidgetItem *itm = new QTableWidgetItem(tr("%1").arg(res[i][j]));
             ui->tableWidget->setItem(i,j, itm);
             if(j == 0)
             {
-                addCheckBoxAt(i, 4,0);
+                addCheckBoxAt(i, 5);
             }
         }
 
     }
+    ui->tableWidget->setColumnHidden(0, true);
 }
 
-void MenuBasket::addCheckBoxAt(int row_number, int column_number,int state)
+void MenuBasket::addCheckBoxAt(int row_number, int column_number)
 {
-
-    // Create a widget that will contain a checkbox
-     QWidget *checkBoxWidget = new QWidget();
-     QCheckBox *checkBox = new QCheckBox();      // We declare and initialize the checkbox
-     checkBox->setText("Выбрать");
-     QHBoxLayout *layoutCheckBox = new QHBoxLayout(checkBoxWidget); // create a layer with reference to the widget
-     layoutCheckBox->addWidget(checkBox);            // Set the checkbox in the layer
-     layoutCheckBox->setAlignment(Qt::AlignCenter);  // Center the checkbox
-     layoutCheckBox->setContentsMargins(0,0,0,0);    // Set the zero padding
-     /* Check on the status of odd if an odd device,
-       * exhibiting state of the checkbox in the Checked, Unchecked otherwise
-       * */
-
-      if(state == 1){
-          checkBox->setChecked(true);
-      } else {
-          checkBox->setChecked(false);
-      }
-      ui->tableWidget->setCellWidget(row_number,column_number, checkBoxWidget);
-
-
-     // Another way to add check box as item
-    /*
-
-   // QTableWidgetItem *checkBoxItem = new QTableWidgetItem("checkbox string ");
     QTableWidgetItem *checkBoxItem = new QTableWidgetItem();
-    checkBoxItem->setFlags(Qt::ItemIsUserCheckable | Qt::ItemIsEnabled);
-    checkBoxItem->setCheckState(Qt::Checked);
-    ui->job_table_view->setItem(row_number,column_number,checkBoxItem);
-
-    */
+    checkBoxItem->setText("Выбрать");
+    checkBoxItem->data(Qt::CheckStateRole);
+    checkBoxItem->setCheckState(Qt::Unchecked);
+    ui->tableWidget->setItem(row_number,column_number,checkBoxItem);
 }
 
 void MenuBasket::on_return_to_menu_clicked()
@@ -92,4 +68,23 @@ void MenuBasket::on_return_to_menu_clicked()
     MainWindow *w = new MainWindow(this);
     this->close();
     w->show();
+}
+
+void MenuBasket::on_buy_goods_clicked()
+{
+    for(int i = 0; i < ui->tableWidget->rowCount(); i++){
+
+            if (ui->tableWidget->item(i, 5)->checkState()==Qt::Checked) //принять
+            {
+                QString count_buy = ui->tableWidget->item(i, 2)->text(); // количество купленного
+                QString id = ui->tableWidget->item(i, 0)->text(); //id товара
+                req_change_goods(id, count_buy);
+
+            }
+    }
+
+    QMessageBox msgBox(this);
+    msgBox.setWindowTitle("Успешно");
+    msgBox.setText("Изменения приняты");
+    msgBox.exec();
 }

@@ -21,12 +21,14 @@ public:
 private slots:
     void on_return_to_menu_clicked();
 
+    void on_buy_goods_clicked();
+
 private:
     Ui::MenuBasket *ui;
 
 private:
     void init_table(QVector<QString> ids);                              // Иницилизирует таблицу в Корзине
-    void addCheckBoxAt(int row_number, int column_number,int state);    // Добавляет в таблицу чекбоксы
+    void addCheckBoxAt(int row_number, int column_number);              // Добавляет в таблицу чекбоксы
 };
 
 #endif // MENUBASKET_H

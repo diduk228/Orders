@@ -25,6 +25,11 @@
     </property>
     <column>
      <property name="text">
+      <string>id_товара</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
       <string>Название товара</string>
      </property>
     </column>
@@ -49,7 +54,7 @@
      </property>
     </column>
    </widget>
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="buy_goods">
     <property name="geometry">
      <rect>
       <x>10</x>
