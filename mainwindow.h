@@ -47,8 +47,10 @@ private:
 public:
     void set_m_current_product_id(QString current);  //сетер
     QString get_m_current_product_id();  //геттер
-     QVector<QString> get_ids();                     //геттер
-     QPushButton* get_ui_btn_add_to_basket();           //геттер
+    QVector<QString> get_ids();                     //геттер
+    QPushButton* get_ui_btn_add_to_basket();           //геттер
+    void set_count_buy(QString count);
+    QPushButton* get_ui_btn_buy_product();           //геттер
 
 };
 

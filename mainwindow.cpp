@@ -260,3 +260,13 @@ QString MainWindow::get_m_current_product_id()
 {
     return m_current_product_id;
 }
+
+void MainWindow::set_count_buy(QString count)
+{
+    ui->count_buy->setText(count);
+
+}
+QPushButton* MainWindow::get_ui_btn_buy_product()
+{
+    return ui->buy_product;
+}
