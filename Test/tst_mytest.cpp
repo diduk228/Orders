@@ -19,6 +19,7 @@ private slots:
     void test_get_product_at_id();
     void test_aut();
     void test_get_name_by_id();
+    void test_get_picture();
 
 };
 
@@ -59,6 +60,14 @@ void MyTest::test_get_name_by_id()
     //delete w;
 
 }
+
+void MyTest::test_get_picture()
+{
+    QWidget *w = new QWidget();
+    BaseData bs(w);
+    QCOMPARE(bs.get_picture(19), "C:/Users/danil/Documents/maket/Orders/Goods/кипич.jpg");
+}
+
 
 QTEST_MAIN(MyTest)
 
