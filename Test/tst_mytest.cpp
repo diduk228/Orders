@@ -16,7 +16,7 @@ public:
     ~MyTest();
 
 private slots:
-    void test_case1();
+    void test_get_product_at_id();
     void test_aut();
 
 };
@@ -31,13 +31,13 @@ MyTest::~MyTest()
 
 }
 
-void MyTest::test_case1()
+void MyTest::test_get_product_at_id()
 {
-
     QWidget *w = new QWidget();
     BaseData bs(w);
-    QCOMPARE(bs.get_count_products(), 5);
-    //delete w;
+    QVector<QString> data = bs.get_data_at_id(19);
+    QCOMPARE(data[0], "Кирпич");
+    QCOMPARE(data[3], "10");
 
 }
 
