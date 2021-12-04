@@ -44,6 +44,9 @@ private:
     void set_ids();                    // Загружает переменную
     void save_current();                   // сохраняет переменную
     void set_current();                    // Загружает переменую
+public:
+    void set_m_current_product_id(QString current);  //сетер
+    Ui::MainWindow& get_ui_mainwindow();           //геттер
 
 };
 

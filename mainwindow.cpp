@@ -240,3 +240,13 @@ void MainWindow::on_delete_from_basket_clicked()
     msgBox.setText("Данный товар удалён из корзины!");
     msgBox.exec();
 }
+
+void MainWindow::set_m_current_product_id(QString current)
+{
+    m_current_product_id = current;
+}
+
+Ui::MainWindow& MainWindow::get_ui_mainwindow()
+{
+    return *ui;
+}
