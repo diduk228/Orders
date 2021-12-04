@@ -46,7 +46,9 @@ private:
     void set_current();                    // Загружает переменую
 public:
     void set_m_current_product_id(QString current);  //сетер
-    Ui::MainWindow& get_ui_mainwindow();           //геттер
+    QString get_m_current_product_id();  //геттер
+     QVector<QString> get_ids();                     //геттер
+     QPushButton* get_ui_btn_add_to_basket();           //геттер
 
 };
 

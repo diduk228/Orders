@@ -246,7 +246,17 @@ void MainWindow::set_m_current_product_id(QString current)
     m_current_product_id = current;
 }
 
-Ui::MainWindow& MainWindow::get_ui_mainwindow()
+QVector<QString> MainWindow::get_ids()
 {
-    return *ui;
+    return ids;
+}
+
+QPushButton* MainWindow::get_ui_btn_add_to_basket()
+{
+    return ui->add_to_basket;
+}
+
+QString MainWindow::get_m_current_product_id()
+{
+    return m_current_product_id;
 }
