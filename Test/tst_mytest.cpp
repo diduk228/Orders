@@ -4,7 +4,12 @@
 #include <QWidget>
 #include "../user.h"
 #include "../basedata.h"
+#include "../mainwindow.h"
+#include "../addgoods.h"
+#include "../deleteproducts.h"
+#include "../menubasket.h"
 #include <QApplication>
+#include <QPushButton>
 // add necessary includes here
 
 class MyTest : public QObject
@@ -21,6 +26,9 @@ private slots:
     void test_get_name_by_id();
     void test_get_picture();
     void test_data_at_login();
+
+
+    void test_add_to_basket();
 
 };
 
@@ -83,6 +91,19 @@ void MyTest::test_data_at_login()
     QCOMPARE(data[6], "fds");
     QCOMPARE(data[7], "Manager");
 }
+
+void MyTest::test_add_to_basket()
+{
+    QWidget *w = new QWidget();
+    MainWindow *bs = new MainWindow(w);
+    QPushButton *quitBtn = bs->get_ui_btn_add_to_basket();
+    //QSignalSpy spy(quitBtn, SIGNAL(clicked()));
+    quitBtn->click();
+    QVector<QString> data = bs->get_ids();
+    QCOMPARE(data[data.length()-1], bs->get_m_current_product_id());
+
+}
+
 
 
 QTEST_MAIN(MyTest)
