@@ -20,6 +20,7 @@ private slots:
     void test_aut();
     void test_get_name_by_id();
     void test_get_picture();
+    void test_data_at_login();
 
 };
 
@@ -66,6 +67,21 @@ void MyTest::test_get_picture()
     QWidget *w = new QWidget();
     BaseData bs(w);
     QCOMPARE(bs.get_picture(19), "C:/Users/danil/Documents/maket/Orders/Goods/кипич.jpg");
+}
+
+void MyTest::test_data_at_login()
+{
+    QWidget *w = new QWidget();
+    BaseData bs(w);
+    QVector<QString> data = bs.get_data_at_login("da");
+    QCOMPARE(data[0], "2");
+    QCOMPARE(data[1], "da");
+    QCOMPARE(data[2], "das");
+    QCOMPARE(data[3], "fds");
+    QCOMPARE(data[4], "32");
+    QCOMPARE(data[5], "fsd");
+    QCOMPARE(data[6], "fds");
+    QCOMPARE(data[7], "Manager");
 }
 
 
