@@ -18,6 +18,7 @@ public:
 private slots:
     void test_get_product_at_id();
     void test_aut();
+    void test_get_name_by_id();
 
 };
 
@@ -46,6 +47,15 @@ void MyTest::test_aut()
     QWidget *w = new QWidget();
     BaseData bs(w);
     QCOMPARE(bs.init_user("da", "das"), 1);
+    //delete w;
+
+}
+
+void MyTest::test_get_name_by_id()
+{
+    QWidget *w = new QWidget();
+    BaseData bs(w);
+    QCOMPARE(bs.get_name_by_id(2), "fds");
     //delete w;
 
 }
